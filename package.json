@@ -1,0 +1,11 @@
+{
+  "name": "E_back_system",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/ldould/E_back_system.git",
+  "author": "ldou <ldou@dcampus.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "webpack": "3.10.0"
+  }
+}
