@@ -5,13 +5,18 @@
   "repository": "https://github.com/ldould/E_back_system.git",
   "author": "ldou <ldou@dcampus.com>",
   "license": "MIT",
+  "scripts": {
+    "dev": "node_modules/.bin/webpack-dev-server",
+    "dist": "node_modules/.bin/webpack -p"
+  },
   "devDependencies": {
     "babel-preset-react": "6.24.1",
     "extract-text-webpack-plugin": "3.0.2",
     "file-loader": "1.1.6",
     "sass-loader": "6.0.6",
     "url-loader": "0.6.2",
-    "webpack": "3.10.0"
+    "webpack": "3.10.0",
+    "webpack-dev-server": "2.9.7"
   },
   "dependencies": {
     "babel-core": "6.26.0",

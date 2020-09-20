@@ -1,14 +1,43 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "font-awesome/css/font-awesome.min.css";
-import "./index.css";
-import "./index.scss";
+
+class Component extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: "rose",
+      age: 18,
+    };
+    //this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    this.setState({
+      age: this.state.age + 1,
+    });
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>I am {this.state.name}</h1>
+        <p>I am {this.state.age} years old</p>
+        {/* <button onClick={this.handleClick}>加一岁</button> */}
+        <button
+          onClick={(e) => {
+            this.handleClick(e);
+          }}
+        >
+          加一岁
+        </button>
+      </div>
+    );
+  }
+}
 
 ReactDOM.render(
   <div>
-    <i className="fa fa-address-book"></i>
-    <h1> hello </h1>,
+    <Component />
   </div>,
-
   document.getElementById("app")
 );
