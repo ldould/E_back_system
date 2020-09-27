@@ -1,60 +1,125 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-class Father extends React.Component {
+class Component extends React.Component {
+  //构造函数
   constructor(props) {
     super(props);
     this.state = {
-      age: 15,
-      name: "lisa",
-      bgColor: "#ddd",
+      data: "old state",
     };
-    this.handleClick = this.handleClick.bind(this);
+
+    console.log("初始化数据：constructor");
   }
+  //组件将要加载
+  componentWillMount() {
+    console.log("componentWillMount"); //在组件渲染之前执行，一般在这里执行异步方法
+  }
+  //组件加载完成
+  componentDidMount() {
+    console.log("componentDidMount"); //组件挂载成功
+  }
+
+  //将要接收父组件传来的props
+  componentWillReceiveProps() {
+    console.log("componentWillReceiveProps");
+  }
+
+  //子组件是不是应该更新（通过return true或false控制）
+  shouldComponentUpdate() {
+    console.log("shouldComponentUpdate");
+    return true;
+  }
+
+  //组件将要更新
+  componentWillUpdate() {
+    console.log("componentWillUpdate");
+  }
+  //组件更新完成
+  componentDidUpdate() {
+    console.log("componentDidUpdate");
+  }
+
+  //组件将要销毁
+  componentWillUnmount() {
+    console.log("componentWillUnmount");
+  }
+
+  //处理点击事件
   handleClick() {
+    console.log("更新数据：");
     this.setState({
-      age: this.state.age + 1,
+      data: "new state",
     });
   }
-  onChangeBgColor(color) {
-    this.setState({
-      bgColor: color,
-    });
-  }
+
+  //渲染
   render() {
+    console.log("render");
     return (
-      <div style={{ background: this.state.bgColor }}>
-        <h1>name:{this.state.name}</h1>
-        <p>age:{this.state.age}</p>
-        <button onClick={this.handleClick}>加一岁</button>
-        {/* 在子组件写回调函数 */}
-        <Child
-          changeColor={(color) => {
-            this.onChangeBgColor(color);
+      <div>
+        <div>{this.props.data}</div>
+        <button
+          onClick={() => {
+            this.handleClick();
           }}
-        />
+        >
+          更新组件
+        </button>
       </div>
     );
   }
 }
 
-class Child extends React.Component {
+class App extends React.Component {
   constructor(props) {
     super(props);
-    this.handleClick = this.handleClick.bind(this);
+    this.state = {
+      data: "old props",
+      hasChild: true,
+    };
+
+    console.log("初始化数据：constructor");
   }
-  handleClick() {
-    this.props.changeColor("red"); //调用函数改变父组件背景色
+  onPropsChange() {
+    console.log("更新props");
+    this.setState({
+      data: "new props",
+    });
   }
 
+  onDistoryChild() {
+    this.setState({
+      hasChild: false,
+    });
+  }
   render() {
-    return <button onClick={this.handleClick}>改变father的背景色：</button>;
+    return (
+      <div>
+        {this.state.hasChild ? <Component data={this.state.data} /> : null}
+
+        <button
+          onClick={() => {
+            this.onPropsChange();
+          }}
+        >
+          改变props
+        </button>
+        <button
+          onClick={() => {
+            this.onDistoryChild();
+          }}
+        >
+          去掉子组件
+        </button>
+      </div>
+    );
   }
 }
 
 ReactDOM.render(
   <div>
-    <Father />
+    <App />
   </div>,
   document.getElementById("app")
 );
