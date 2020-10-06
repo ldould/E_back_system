@@ -10,6 +10,13 @@ module.exports = {
     publicPath: "/dist/",
     filename: "js/app.js",
   },
+  resolve: {
+    alias: {
+      //alias字段处理别名
+      page: path.resolve(__dirname, "src/page"),
+      component: path.resolve(__dirname, "src/component"),
+    },
+  },
   module: {
     rules: [
       //react文件处理
@@ -44,29 +51,25 @@ module.exports = {
       //图片的配置
       {
         test: /\.(png|jpg|gif)$/,
-        use: [
-          {
-            loader: "url-loader",
-            options: {
-              //1.文件大小小于limit参数，url-loader将会把文件转为DataURL；2.文件大小大于limit，url-loader会调用file-loader进行处理，参数也会直接传给file-loader。
-              limit: 8192,
-              name: "resource/[name].[ext]",
-            },
+        use: [{
+          loader: "url-loader",
+          options: {
+            //1.文件大小小于limit参数，url-loader将会把文件转为DataURL；2.文件大小大于limit，url-loader会调用file-loader进行处理，参数也会直接传给file-loader。
+            limit: 8192,
+            name: "resource/[name].[ext]",
           },
-        ],
+        }, ],
       },
       //字体的配置
       {
         test: /\.(eot|svg|ttf|woff|woff2|otf)$/,
-        use: [
-          {
-            loader: "url-loader",
-            options: {
-              limit: 8192,
-              name: "resource/[name].[ext]",
-            },
+        use: [{
+          loader: "url-loader",
+          options: {
+            limit: 8192,
+            name: "resource/[name].[ext]",
           },
-        ],
+        }, ],
       },
     ],
   },
@@ -88,5 +91,8 @@ module.exports = {
   ],
   devServer: {
     port: 8086,
+    historyApiFallback: {
+      index: "/dist/index.html", //404页面也会回到index.html  404s will fallback to /dist/index.html
+    },
   },
 };

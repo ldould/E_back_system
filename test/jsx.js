@@ -230,6 +230,8 @@ class Father extends React.Component {
   render(props) {
     return (
       <div style={{ background: this.state.bgColor }}>
+
+      {/* 在子组件写回调函数 */}
         <Child
           bgColor={this.state.bgColor}
           changeColor={(color) => {
