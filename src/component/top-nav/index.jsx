@@ -36,7 +36,7 @@ class TopNav extends React.Component {
                   }}
                 >
                   <i className="fa fa-sign-out fa-fw"></i>
-                  <span>推出登录</span>
+                  <span>退出登录</span>
                 </a>
               </li>
             </ul>
