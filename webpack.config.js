@@ -58,7 +58,7 @@ module.exports = {
             limit: 8192,
             name: "resource/[name].[ext]",
           },
-        }, ],
+        },],
       },
       //字体的配置
       {
@@ -69,7 +69,7 @@ module.exports = {
             limit: 8192,
             name: "resource/[name].[ext]",
           },
-        }, ],
+        },],
       },
     ],
   },
@@ -77,6 +77,7 @@ module.exports = {
     //处理html文件
     new HtmlWebpackPlugin({
       template: "./src/index.html", //模板
+      favicon: './favicon.ico'
     }),
 
     //独立css文件
