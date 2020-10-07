@@ -16,7 +16,6 @@
 用户
 --用户管理
 
-
 # package.json 配置命令
 
 "scripts": {
@@ -27,7 +26,11 @@
 
 <!-- -p线上环境的打包 -->
 
-<!-- rarn run dist -->
+<!-- yarn run dist -->
 
 "dist": "node_modules/.bin/webpack -p"
 },
+
+# 接口地址
+
+https://gitee.com/imooccode/happymmallwiki/wikis

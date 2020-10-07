@@ -15,6 +15,8 @@ module.exports = {
       //alias字段处理别名
       page: path.resolve(__dirname, "src/page"),
       component: path.resolve(__dirname, "src/component"),
+      utils: path.resolve(__dirname, "src/utils"),
+      service: path.resolve(__dirname, "src/service"),
     },
   },
   module: {
@@ -95,5 +97,12 @@ module.exports = {
     historyApiFallback: {
       index: "/dist/index.html", //404页面也会回到index.html  404s will fallback to /dist/index.html
     },
+    // proxy做代理
+    proxy: {
+      '/manage': {
+        target: 'http://admintest.happymmall.com',//将/manage代理到http://admintest.happymmall.com
+        changeOrigin: true  //伪装成用这个http://admintest.happymmall.com地址发出来的请求
+      }
+    }
   },
 };
