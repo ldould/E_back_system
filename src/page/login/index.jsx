@@ -11,8 +11,11 @@ class Login extends React.Component {
     this.state = {
       username: "",
       password: "",
-      redirect: _mm.getUrlParam('redirect') || ''
+      redirect: _mm.getUrlParam("redirect") || "/",
     };
+  }
+  componentWillMount() {
+    document.title = "登录 - My System";
   }
   //这样就不用写很多个change方法，[inputName]: inputValue,可用变量表示，得到对应的字段，如下表示username:e.target.value,password:e.target.value
   onInputChange(e) {
@@ -22,21 +25,34 @@ class Login extends React.Component {
       [inputName]: inputValue,
     });
   }
+  onInputKeyUp(e) {
+    //e.keyCode === 13即回车键，按回车键调用submit方法
+    if (e.keyCode === 13) {
+      this.onSubmit();
+    }
+  }
   //当用户提交表单
   onSubmit() {
-    _user.login({
+    let loginInfo = {
       username: this.state.username,
-      password: this.state.password
-    })
-      .then(
+      password: this.state.password,
+    };
+    let checkResult = _user.checkLoginInfo(loginInfo);
+    //验证通过
+    if (checkResult.status) {
+      //记得传参loginInfo
+      _user.login(loginInfo).then(
         (res) => {
-          console.log(this.state.redirect)
-          // this.props.history.push(this.state.redirect);//传值
+          _mm.setStorage("userInfo", res);
+          this.props.history.push(this.state.redirect); //传值
         },
-        (err) => {
+        (errMsg) => {
           _mm.errorTips(errMsg);
         }
       );
+    } else {
+      _mm.errorTips(checkResult.msg);
+    }
   }
   render() {
     // console.log(this.props.history)
@@ -54,6 +70,7 @@ class Login extends React.Component {
                   type="text"
                   className="form-control"
                   placeholder="请输入用户名"
+                  onKeyUp={(e) => this.onInputKeyUp(e)}
                   onChange={(e) => this.onInputChange(e)}
                 />
               </div>
@@ -64,6 +81,7 @@ class Login extends React.Component {
                   type="password"
                   className="form-control"
                   placeholder="请输入密码"
+                  onKeyUp={(e) => this.onInputKeyUp(e)}
                   onChange={(e) => this.onInputChange(e)}
                 />
               </div>

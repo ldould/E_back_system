@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import {
-  HashRouter as Router,
+  BrowserRouter as Router,
   Route,
   Link,
   Switch,
@@ -17,16 +17,18 @@ class App extends React.Component {
       <Router>
         <Switch>
           <Route path="/login" component={Login} />
-          <Route path="/" render={props => (
-            <Layout>
-              <Switch>
-                <Route exact path="/" component={Home} />
-                <Route path="/product" component={Home} />
-                <Route path="/product/category" component={Home} />
-              </Switch>
-            </Layout>
-          )} />
-
+          <Route
+            path="/"
+            render={(props) => (
+              <Layout>
+                <Switch>
+                  <Route exact path="/" component={Home} />
+                  <Route path="/product" component={Home} />
+                  <Route path="/product/category" component={Home} />
+                </Switch>
+              </Layout>
+            )}
+          />
         </Switch>
       </Router>
     );

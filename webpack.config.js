@@ -60,7 +60,7 @@ module.exports = {
             limit: 8192,
             name: "resource/[name].[ext]",
           },
-        },],
+        }, ],
       },
       //字体的配置
       {
@@ -71,7 +71,7 @@ module.exports = {
             limit: 8192,
             name: "resource/[name].[ext]",
           },
-        },],
+        }, ],
       },
     ],
   },
@@ -100,8 +100,8 @@ module.exports = {
     // proxy做代理
     proxy: {
       '/manage': {
-        target: 'http://admintest.happymmall.com',//将/manage代理到http://admintest.happymmall.com
-        changeOrigin: true  //伪装成用这个http://admintest.happymmall.com地址发出来的请求
+        target: 'http://admintest.happymmall.com', //将/manage代理到http://admintest.happymmall.com
+        changeOrigin: true //伪装成用这个http://admintest.happymmall.com地址发出来的请求
       }
     }
   },

@@ -1,9 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import MUtil from "utils/mm.jsx";
+import User from "service/user-service.jsx";
+const _mm = new MUtil();
+const _user = new User();
 
 class TopNav extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      username: _mm.getStorage("userInfo").username || "aa",
+    };
   }
 
   onLogout() {}
@@ -25,7 +32,7 @@ class TopNav extends React.Component {
               aria-expanded="false"
             >
               <i className="fa fa-user fa-fw"></i>
-              <span>欢迎，admin</span>
+              <span>欢迎，{this.state.username}</span>
               <i className="fa fa-caret-down"></i>
             </a>
             <ul className="dropdown-menu dropdown-messages">
