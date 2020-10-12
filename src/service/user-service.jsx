@@ -32,6 +32,13 @@ class User {
             mag: '验证通过'
         }
     }
+    //退出登录
+    Logout(){
+        return _mm.request({
+            type: "post",
+            url: "/user/logout.do"
+        })
+    }
 
 }
 export default User;

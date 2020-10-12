@@ -9,11 +9,21 @@ class TopNav extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: _mm.getStorage("userInfo").username || "aa",
+      username: _mm.getStorage("userInfo").username || "",
     };
   }
 
-  onLogout() {}
+  onLogout() {
+    _user.Logout().then(res => {
+      _mm.removeStorage('userInfo')
+      //this.props.history.push('/login')
+      window.location.href = '/login'
+    },
+    errMsg => {
+      _mm.errorTips(errMsg);
+    }
+    )
+  }
   render() {
     return (
       <div className="navbar navbar-default top-navbar">
@@ -32,7 +42,12 @@ class TopNav extends React.Component {
               aria-expanded="false"
             >
               <i className="fa fa-user fa-fw"></i>
-              <span>欢迎，{this.state.username}</span>
+              
+              {
+                this.state.username 
+                ?  <span>欢迎，{this.state.username}</span>
+                :  <span>欢迎您</span>
+              }
               <i className="fa fa-caret-down"></i>
             </a>
             <ul className="dropdown-menu dropdown-messages">
