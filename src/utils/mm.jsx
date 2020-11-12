@@ -42,6 +42,9 @@ class MUtil {
         // console.log(result, "result");
         return result ? encodeURIComponent(result[2]) : null;
     }
+    successTips(successMsg){
+        alert(successMsg || '操作成功！');
+    }
     //错误提示
     errorTips(errMsg) {
         alert(errMsg || "错误");

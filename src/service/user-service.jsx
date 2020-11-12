@@ -39,7 +39,7 @@ class User {
             url: "/user/logout.do"
         })
     }
-    gerUserList(pageNum){
+    getUserList(pageNum){
         return _mm.request({
             type: "post",
             url: "/manage/user/list.do",
